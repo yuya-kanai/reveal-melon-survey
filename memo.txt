@@ -1,0 +1,121 @@
+Melon Survey
+Technology behind this tool
+
+Architecture Web framework / HTML Template
+What is HTML TEMPLATE?
+What is SPA?
+Why the popularity
+- Team Isolation
+- Mobile apps integration
+- Specialization
+- PWA
+LAMP -> MERN(MEVN)
+Weakness of SPA
+- SEO
+- Duplication of Code
+Web Framework != SPA
+Beyond spa
+Next.js Nuxt.js Gatsby.js ...
+
+
+- Microservice vs Monolithic
+Are APIs Microservice?
+No 
+Microservice is more about splitting a service by domain
+From GUI to Database
+Why Microservice?
+- Team Isolation
+- Scalability
+Weakness of Microservice 
+- Difficult to build with performance without a proper architect
+
+Docker / K8s
+Docker vs Vagrant + Ansible
+Speed
+- Download time
+Caching
+- Caching middle layer
+DockerScript
+- No idempotence like ansible
+- More like destroying a vagrant image
+Orchastration => K8s
+Cloud Services
+Many cloud services support Container operation which support auto scaling
+ECS Fargate
+EKS
+Google Cloud Run
+GKE
+
+Golang
+What is golang?
+Developed by Google, to replace C++
+Strength of golang
+- Amazing tooling
+-- Fmt
+-- Test
+-- Benchmark
+-- Doc
+-- PProf
+- Concurrency
+- Performant
+Weakness
+Dependencies Managed with GOPATH => Docker + Go mod
+
+Graphql
+A query language for your API / Replacement for REST
+Specification not an implementation
+Mutation types are seperate from query Types
+Generated Documentation
+DEMO
+
+Gqlgen
+Code Generation
+Directives
+circular dependency can be done with generated resolvers
+
+Authentification
+Jwt vs sesssion
+Splitting JWT
+Graphql Directives
+Authorization
+Doing join to ensure the user is the one mutating or referencing is costly
+Caching with Redis (Concept)
+Values mutated or accessed are generally queried beforehand
+Session keys are connected to Protobuffer val on Redis with dictionary which contain ids of manipulatable objects
+
+
+Apollo-Client
+Code Generation
+Reusable Query through Importing Fragments
+Powerful Caching replacing vuex
+
+Typescript/Vue/Vue-Bootstrap/ES6
+Nuxt is powerful with VueX, Vue Router, UI framework, Jest, Eslint, Prettier and SSR support
+While setting up Typescript is painfull Typescript + Graphql is good
+When learning typescript use "any" if confused 
+Fix any when you know better with eslint
+
+Reshaping Data types is a must while dealing with Vue-Bootstrap
+Destructuring
+Spread Operator
+Key/property shorthand
+
+Test
+- Milestones for testing method
+testing with test values written in test code
+-> table testing
+-> golden testing
+- Milestones for Testing Environments
+Fresh Code ? TDD : Code Coverage  -> Continuous Integration -> Continuous Delivery -> Continuous Deployment
+
+CI
+Continuous delivery of docker 
+Backend Response time chart
+Frontend Lighthouse chart
+Diffing Frontend Screenshot
+
+Regrets
+File Architecure
+Microservice
+
+
