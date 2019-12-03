@@ -4,19 +4,21 @@ Technology behind this tool
 Architecture Web framework / HTML Template
 What is HTML TEMPLATE?
 What is SPA?
+LAMP -> MERN(MEAN, MEVN)
 Why the popularity
+- Mobile apps integration with REST
 - Team Isolation
-- Mobile apps integration
-- Specialization
+- Specialization in Ecosystem
+- Interactive content with JS
 - PWA
-LAMP -> MERN(MEVN)
 Weakness of SPA
 - SEO
-- Duplication of Code
+- Duplication of Models
 Web Framework != SPA
 Beyond spa
 Next.js Nuxt.js Gatsby.js ...
-
+Duplication of model
+Graphql / gRPC for Code Generation
 
 - Microservice vs Monolithic
 Are APIs Microservice?
@@ -27,17 +29,19 @@ Why Microservice?
 - Team Isolation
 - Scalability
 Weakness of Microservice 
-- Difficult to build with performance without a proper architect
+- Difficult to build with performance without a proper DevOps and Architect
 
 Docker / K8s
 Docker vs Vagrant + Ansible
 Speed
 - Download time
-Caching
-- Caching middle layer
 DockerScript
 - No idempotence like ansible
 - More like destroying a vagrant image
+- Faster with caching
+Caching
+- Caching middle layer
+Operation
 Orchastration => K8s
 Cloud Services
 Many cloud services support Container operation which support auto scaling
@@ -50,16 +54,18 @@ Golang
 What is golang?
 Developed by Google, to replace C++
 Strength of golang
+- Concurrency 
+- Performant => 30x php
+- Cleaner than C++
 - Amazing tooling
 -- Fmt
 -- Test
 -- Benchmark
 -- Doc
 -- PProf
-- Concurrency
-- Performant
 Weakness
 Dependencies Managed with GOPATH => Docker + Go mod
+Lack of generics
 
 Graphql
 A query language for your API / Replacement for REST
@@ -67,11 +73,12 @@ Specification not an implementation
 Mutation types are seperate from query Types
 Generated Documentation
 DEMO
+@depricated
 
 Gqlgen
 Code Generation
 Directives
-circular dependency can be done with generated resolvers
+circular dependency can be handle with generated resolvers
 
 Authentification
 Jwt vs sesssion
@@ -82,7 +89,6 @@ Doing join to ensure the user is the one mutating or referencing is costly
 Caching with Redis (Concept)
 Values mutated or accessed are generally queried beforehand
 Session keys are connected to Protobuffer val on Redis with dictionary which contain ids of manipulatable objects
-
 
 Apollo-Client
 Code Generation
@@ -105,8 +111,9 @@ Test
 testing with test values written in test code
 -> table testing
 -> golden testing
+
 - Milestones for Testing Environments
-Fresh Code ? TDD : Code Coverage  -> Continuous Integration -> Continuous Delivery -> Continuous Deployment
+Fresh Code ? TDD : Code Coverage -> Continuous Integration -> Continuous Delivery -> Continuous Deployment
 
 CI
 Continuous delivery of docker 
@@ -115,7 +122,9 @@ Frontend Lighthouse chart
 Diffing Frontend Screenshot
 
 Regrets
+Gorm(Dry, KISS, YAGNI)
 File Architecure
+Test on Frontend side
+Mono repo??
 Microservice
-
 
