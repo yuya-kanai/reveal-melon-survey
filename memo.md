@@ -1,17 +1,41 @@
 # Melon Survey
 Technology behind this tool
 
+--
+
+## Technologies
+Tech | Description
+---- | ---
+Graphql | クエリ言語
+Docker | 実行環境
+Golang | サーバー側の言語
+Gorm | サーバー側のORM
+gqlgen | サーバー側のGraphqlフレームワーク
+
+--
+
+Tech | Description
+---- | ---
+Typescript | 型付きのJS (クライアント側)
+Nuxt | クライアント側のフレームワーク(Vue)
+Apollo |  クライアント側のGraphqlフレームワーク(Vue)
+
+
 ---
 
 ### SPA VS HTML Template
 
 --
 
-What is HTML TEMPLATE?
+What are HTML TEMPLATEs?
+
+PHP
 
 --
 
-What is SPA?
+What are SPAs?
+
+Vue, React
 
 --
 
@@ -28,27 +52,27 @@ MongoDB Express React/Vue Node
 --
 
 Why the popularity
-- Mobile apps integration with REST
-- Team Isolation
+- **Mobile apps integration with REST**
+- Separation of Concerns
 - Specialization in Ecosystem
-- Interactive content with JS
+- Easier state management in interactive web apps
 - PWA
 
---
-
-Weakness of SPA
-- SEO
-- Duplication of Models
 
 --
 
+## Weakness of SPA
+- SEO / Performance
+- Duplication of Object Models
+
+--
+
+#### SEO / Performance
 ## Web Framework != SPA
 
---
-
-## Beyond spa
-### SSR and static site generation
-Next.js Nuxt.js Gatsby.js ...
+#### Beyond SPA
+## SSR and static site generation
+##### Next.js Nuxt.js Gatsby.js ...
 
 --
 
@@ -63,18 +87,42 @@ Are APIs Microservice?
 
 --
 
-No 
+Usually not
 
 --
 
 Microservice is more about isolating sections of a service by business domain
 
-From GUI to Database
+--
+
+## Monolith
+
+|          | サービス| 
+|----------|:------:|
+| Backend & Frontend (Server) |    ■   |
+
 
 --
 
+## API
+|          | サービス| 
+|----------|:------:|
+| Backend  |    ■   |
+| Frontend |    ■   |
+
+--
+
+## MicroService
+|          | ユーザ  | 広告  | 閲覧履歴   |
+|----------|:------:|:----:|:--------:|
+| Backend  |    ■   |   ■  |     ■    |
+| Frontend |    ■   |   ■  |     ■    |
+
+--
+
+
 Why Microservice?
-- Responsibility Isolation
+- Seperation of concerns
 - Scalability
 
 --
@@ -87,9 +135,162 @@ Why Microservice?
 --
 
 ## Popular Tools
-- gRPC
 - K8S
+- gRPC
 - Graphql Federation
+
+--
+
+### Example Use of Microservice
+
+<div class="mermaid">
+graph TB;
+    History-- gRPC ---AD;
+    User-->GraphQL;
+    AD-->GraphQL;
+    History-->GraphQL;
+    GraphQL-->Mobile_App;
+    GraphQL-->Desktop;
+    GraphQL-->Mobile_Browser;
+</div>
+
+---
+
+# Graphql
+A query language for your API / Replacement for REST
+
+--
+
+## Graphql??
+|          | サービス| 
+|----------|:------:|
+| Backend  |    ■   |
+| Graphql Scheme |    ■   |
+| Frontend |    ■   |
+
+--
+
+Specification not an implementation
+
+No official library or framework
+
+(Although apollo is virtually the
+
+official implementation...)
+
+--
+
+## Server implementation 
+- Apollo Server (Node)
+- grpahql-ruby
+- graphql-java
+- graphql-php
+- gqlgen(go) <==
+- graphene(python)
+
+--
+
+## Client implementation
+- Apollo Client <==
+- Relay
+
+--
+
+#### Examples
+## REST
+```
+GET /blog/author/<id> 
+
+↓
+
+GET /blog/author/<id>/posts?last=3
+
+↓
+
+GET /blog/author/<id>/topics?last=3
+```
+
+--
+
+## Graphql Request
+```
+{
+  author (id: 6) {
+    name 
+    posts (last: 3) {
+      title
+    }
+    topics (last : 3) {
+     name
+    }
+  }
+}
+```
+
+
+--
+
+## Graphql Response
+```
+{
+  "data" : {
+    "author" : {
+      "name" : "Adhithi Ravichandran",
+      "posts" : [
+        { title: "React vs. Vue : A Wholesome Comparison"},
+        { title: "React Lifecycle Methods: A Deep Dive"},
+        { title: "5 Essential Skills A Frontend Developer Should Possess"}
+      ],
+      "topics" : [
+        { name: "React and Vue"},
+        { name: "React"},
+        { name: "General"}
+      ]
+    }
+  }
+}
+```
+<small> https://medium.com/@adhithiravi/graphql-vs-rest-a-comparison-16a2f5f29198
+</small>
+
+
+--
+
+## Strength
+
+- Flexible Query
+
+- Generated Code from schema
+
+- Generated Documentation for APIs with amazing tools like graphql playground
+
+- Simultaneous development of backend and frontend 
+  - Generate fake data using graphql-inspector
+
+- @deprecated
+
+
+--
+
+## resources
+https://principledgraphql.com/
+
+--
+
+# Gotchas
+
+Query types and mutation types are separate
+
+Circular dependency can be handled with resolvers
+
+--
+
+# Apollo-Client
+
+- Powerful Caching replacing VueX / Redux
+- Reusable Query through Importing Fragments
+- JS/TS Code Generation with graphql-codegen
+
 
 ---
 
@@ -110,14 +311,14 @@ https://www.youtube.com/watch?v=u8dW8DrcSmo
 --
 
 ## Benefits of Containerization
-### Quickly change configuration
-- Caching middle layer
+- Quickly change configuration
+  - Caching middle layer
 
-### Download Speed
-- Minimal download time
+- Download Speed
+  - Minimal download time
 
-### Operational cost
-- Automatically scale up with Orchestration 
+- Operational cost
+  - Automatically scale up with Orchestration 
 
 --
 
@@ -132,15 +333,13 @@ Docker-Compose, Kompose, Docker-swarm, K8s
 
 Many cloud services support Container operation which support auto scaling
 
---
 
 - ECS Fargate 
 - ECS EC2
 - EKS
 - GKE
 - Google Cloud Run
-- Anthos
-- EC2/GCE with K8S and provisioning
+- EC2/GCE with K8S and manual provisioning
 
 ---
 
@@ -172,117 +371,16 @@ Developed by Google, to replace C++
 
 ## Weakness
 
-Lack of generics
-
-↓
- 
-No solution
-
 Dependencies Managed with GOPATH 
 
 ↓
  
 Docker + Go mod
 
-
----
-
-# Graphql
-A query language for your API / Replacement for REST
-
 --
 
-Specification not an implementation
-
-No official library or framework
-
-(Although apollo is virtually the
-
-official implementation...)
-
---
-
-## Server implementation 
-- Apollo Server (Node)
-- grpahql-ruby
-- graphql-java
-- graphql-php
-- gqlgen(go)
-- graphene(python)
-
---
-
-## Client implementation
-- Apollo Client
-- Relay
-
---
-
-## Strength
-
-- Flexible Query
-
-- Generated Code from schema
-
-- Generated Documentation for APIs with amazing tools like graphql playground
-
-- Simultaneous development of backend and frontend 
-  - Generate fake data using graphql-inspector
-
-- @deprecated
-
-DEMO
-
---
-
-# Gotchas
-
-Query types and mutation types are separate
-
-Circular dependency can be handle with resolvers
-
---
-
-# Gqlgen
-
-Code Generation
-
-Directives
-
---
-
-# Authentication
-Jwt vs Session
-
---
-
-# Solution
-Splitting JWT
-
---
-
-## Graphql Directives
-
---
-
-# Authorization
-
-Doing join to ensure the user is the one mutating or referencing is costly
-
---
-
-### Caching with Redis (Concept)
-
-Values mutated or accessed are generally queried beforehand
-Session keys are connected to Protobuffer val on Redis with dictionary which contain ids of manipulatable objects
-
---
-
-# Apollo-Client
-
-- Powerful Caching replacing VueX / Redux
-- Reusable Query through Importing Fragments
-- JS/TS Code Generation with graphql-codegen
+## Resources 
+https://tour.golang.org/list
 
 ---
 
@@ -294,7 +392,7 @@ Typescript/Nuxt/Vue-Bootstrap/ES6
 ## Nuxt is powerful
 - VueX 
 - Vue Router
-- UI framework (e.g. Bootstrap)
+- UI framework choices (e.g. Bootstrap)
 - Jest 
 - Eslint 
 - Prettier 
@@ -319,7 +417,42 @@ refactor any when you know better with eslint
 ## Restructuring Data with ES6
 - Destructuring
 - Spread Operator
-- Key/property shorthand
+- Rest parameter
+
+--
+
+## Vue's MVVM
+
+- Model(Apollo/Graphql)
+- Model View(Vue Binded Models)
+- View(Vue Components)
+
+--
+
+## Model to Model View Conversion
+
+```
+const { // Destructuring
+    Model,
+    Salesperson,
+    SalespersonID,
+    ...Filtered // Rest operator
+} = clientModel 
+
+let salesperson: string
+if (Salesperson == null) {
+    salesperson = 'No Salesperson'
+} else {
+    salesperson = Salesperson.Name // Salesperson Obj to Str
+}
+
+const clientModelView = {
+    ID: Model.ID,
+    Salesperson: salesperson,
+    ...Filtered // Spread Operator
+}
+```
+<small> EditClient.vue</small>
 
 ---
 
@@ -327,17 +460,36 @@ refactor any when you know better with eslint
 
 --
 
+Benefits of TDD
+- No need to click / type on interfaces to test your code
+- No need to diff with your eyes if it succeeded
+- You get reusable automated test function
+
+--
+
 ## Milestones for mastering testing method
-basic testing 
 
--> table driven testing
-
--> golden unit testing
+<div class="mermaid">
+graph LR
+    A(basic testing) --> B(table driven testing)
+    B --> C(golden unit testing)
+</div>
 
 --
 
 ## Milestones for Testing Environments
-Fresh Code ? TDD : Code Coverage -> Continuous Integration -> Continuous Delivery -> Continuous Deployment
+
+<span class="mermaid">
+graph LR
+    C{Legacy_Code?}
+    C -->|False| D(TDD)
+    C -->|True| E(Code Coverage)
+    E -->B(Continuous Integration)
+    D -->B(Continuous Integration)
+    B -->A(Continuous Delivery)
+    A -->X(Continuous Deployment)
+</span>
+
 
 ---
 
@@ -345,7 +497,7 @@ Fresh Code ? TDD : Code Coverage -> Continuous Integration -> Continuous Deliver
 
 --
 
-Continuous delivery of docker 
+Continuous delivery of docker (Spinnaker)
 
 --
 
@@ -367,12 +519,14 @@ GraphQL Inspector
 
 # Introspection
 
-Gorm(Dry, KISS, YAGNI)
+Improve Gorm(Dry, KISS, YAGNI)
 
 File Architecure
 
 Test on Frontend side
 https://qiita.com/ykhirao/items/becd9be857dbe6804314
+
+Chaos Engineering
 
 Mono repo??
 
