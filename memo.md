@@ -23,6 +23,97 @@ Apollo |  クライアント側のGraphqlフレームワーク(Vue)
 
 ---
 
+# Docker / K8S
+
+--
+
+[Docker](https://www.youtube.com/watch?v=u8dW8DrcSmo
+) vs Vagrant + Ansible
+
+--
+
+## DockerScript
+- No idempotency like ansible
+- Similar to destroying a vagrant image
+- Faster with caching
+
+--
+
+## Benefits of Containerization
+- Quickly change configuration
+  - Caching middle layer
+
+- Download Speed
+  - Minimal download time
+
+- Operational cost
+  - Automatically scale up with Orchestration 
+
+--
+
+# Orchestration
+### Operating multiple containers
+
+Docker-Compose, Kompose, Docker-swarm, K8s
+
+--
+
+## Cloud Services
+
+Many cloud services support Container operation which support auto scaling
+
+
+- ECS Fargate 
+- ECS EC2
+- EKS
+- GKE
+- Google Cloud Run
+- EC2/GCE with K8S and manual provisioning
+
+---
+
+# Golang
+
+--
+
+## What is golang?
+
+Developed by Google, to replace C++
+
+--
+
+## Strength of golang
+- Concurrency
+- Performant => 30x php
+- Cleaner than C++
+- Small Binary => 100x java
+- Fast compilation
+- Amazing tooling to support DX
+  - Formatter
+  - Test
+  - Lint
+  - Benchmark
+  - Document
+  - PProf
+
+--
+
+## Weakness
+
+Dependencies Managed with GOPATH 
+
+↓
+ 
+Docker + Go mod
+
+--
+
+## Resources 
+https://tour.golang.org/list
+
+---
+
+#### Before graphql
 ### SPA VS HTML Template
 
 --
@@ -70,9 +161,30 @@ Why the popularity
 #### SEO / Performance
 ## Web Framework != SPA
 
+--
+
 #### Beyond SPA
-## SSR and static site generation
+### SSR and static site generation
 ##### Next.js Nuxt.js Gatsby.js ...
+
+--
+
+## LAMP 
+
+Linux Apache Mysql PHP/Perl/Python
+
+# ↓ 
+
+## MERN
+
+MongoDB Express React/Vue Node
+
+↓
+
+## JAM
+
+Javascript, Api, Markup
+
 
 --
 
@@ -81,6 +193,7 @@ Graphql / gRPC for Code Generation
 
 ---
 
+#### Before graphql
 ### Microservice vs Monolithic
 
 Are APIs Microservice?
@@ -121,7 +234,7 @@ Microservice is more about isolating sections of a service by business domain
 --
 
 
-Why Microservice?
+## Why Microservice?
 - Seperation of concerns
 - Scalability
 
@@ -292,95 +405,6 @@ Circular dependency can be handled with resolvers
 - JS/TS Code Generation with graphql-codegen
 
 
----
-
-# Docker / K8S
-
---
-
-Docker vs Vagrant + Ansible
-https://www.youtube.com/watch?v=u8dW8DrcSmo
-
---
-
-## DockerScript
-- No idempotency like ansible
-- Similar to destroying a vagrant image
-- Faster with caching
-
---
-
-## Benefits of Containerization
-- Quickly change configuration
-  - Caching middle layer
-
-- Download Speed
-  - Minimal download time
-
-- Operational cost
-  - Automatically scale up with Orchestration 
-
---
-
-# Orchestration
-### Operating multiple containers
-
-Docker-Compose, Kompose, Docker-swarm, K8s
-
---
-
-## Cloud Services
-
-Many cloud services support Container operation which support auto scaling
-
-
-- ECS Fargate 
-- ECS EC2
-- EKS
-- GKE
-- Google Cloud Run
-- EC2/GCE with K8S and manual provisioning
-
----
-
-# Golang
-
---
-
-## What is golang?
-
-Developed by Google, to replace C++
-
---
-
-## Strength of golang
-- Concurrency
-- Performant => 30x php
-- Cleaner than C++
-- Small Binary
-- Fast compilation
-- Amazing tooling to support DX
-  - Formatter
-  - Test
-  - Lint
-  - Benchmark
-  - Document
-  - PProf
-
---
-
-## Weakness
-
-Dependencies Managed with GOPATH 
-
-↓
- 
-Docker + Go mod
-
---
-
-## Resources 
-https://tour.golang.org/list
 
 ---
 
@@ -402,7 +426,7 @@ Typescript/Nuxt/Vue-Bootstrap/ES6
 
 While setting up Typescript is painful 
 
-Typescript + Graphql is good
+Typescript + Graphql is efficient
 
 --
 
@@ -497,7 +521,7 @@ graph LR
 
 --
 
-Continuous delivery of docker (Spinnaker)
+Continuous delivery of containers (Spinnaker)
 
 --
 
@@ -521,7 +545,7 @@ GraphQL Inspector
 
 Improve Gorm(Dry, KISS, YAGNI)
 
-File Architecure
+File Architecure (MVVM)
 
 Test on Frontend side
 https://qiita.com/ykhirao/items/becd9be857dbe6804314
